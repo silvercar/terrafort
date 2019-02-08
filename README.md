@@ -5,6 +5,11 @@ Terraform + Import = Terrafort!
 Create terraform templates for existing resources. Unlike other tools like [terraforming](http://terraforming.dtan4.net/),
 Terrafort allows you to import individual resources instead of entire resource groups.
 
+## Requirements
+
+- Python 3
+- Terraform (only needed to run `terraform fmt` on output)
+
 ## Setup
 
 `pip3 install git+https://github.com/silvercar/terrafort`
@@ -32,6 +37,6 @@ group with a number suffix.
 ```bash
 $ virtualenv venv --python=python3
 $ . venv/bin/activate
-$ pip install --editable .
+$ pip3 install --editable .
 $ terrafort
 ```
