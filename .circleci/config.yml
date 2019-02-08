@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Install requirements
-          command: sudo pip install pylint boto3
+          command: sudo pip install -r requirements.txt
       - run:
           name: Run pylint
           command: pylint src
