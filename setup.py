@@ -20,13 +20,13 @@ def read(fname):
 
 setup(
     name='terrafort',
-    version='0.1.0',
+    version='0.1.3',
     install_requires=install_requires,
     package_dir={'': 'src'},
     packages=find_packages('src'),
     long_description=read('README.md'),
     include_package_data=True,
-    package_data={'terrafort': ['templates']},
+    package_data={'terrafort': ['templates/*']},
     entry_points={
         'console_scripts': {
             'terrafort = terrafort.main:cli'
