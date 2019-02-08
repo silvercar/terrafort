@@ -32,7 +32,7 @@ class Renderer:
         :param template_path:
         :return:
         """
-        template_loader = jinja2.FileSystemLoader(searchpath="./templates")
+        template_loader = jinja2.PackageLoader('terrafort', 'templates')
         template_env = jinja2.Environment(loader=template_loader)
         template_env.globals['count'] = self.count
         template = template_env.get_template(template_path)
