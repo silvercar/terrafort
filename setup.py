@@ -1,4 +1,5 @@
 import os
+
 from setuptools import setup, find_packages
 
 install_requires = [
@@ -25,7 +26,7 @@ setup(
     packages=find_packages('src'),
     long_description=read('README.md'),
     include_package_data=True,
-    package_data={'terrafort': []},
+    package_data={'terrafort': ['templates']},
     entry_points={
         'console_scripts': {
             'terrafort = terrafort.main:cli'
