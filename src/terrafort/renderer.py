@@ -16,8 +16,11 @@ class Renderer:
         render() calls
         :return:
         """
+
+        # Return the value before incrementing
+        count = self.counter
         self.counter += 1
-        return self.counter
+        return count
 
     def reset_count(self):
         self.counter = 0

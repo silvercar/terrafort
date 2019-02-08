@@ -1,5 +1,6 @@
 {% for range in resource.IpRanges %}
-resource "aws_security_group_rule" "{{ resource.name }}-{{ count() }}" {
+{% set rule_num = count() %}
+resource "aws_security_group_rule" "{{ resource.name }}{% if rule_num > 0 %}-{{ rule_num }}{% endif %}" {
   security_group_id = "{{ resource.id }}"
   type              = "{{ resource.type }}"
   from_port         = {{ resource.FromPort | default('0')}}
@@ -12,7 +13,8 @@ resource "aws_security_group_rule" "{{ resource.name }}-{{ count() }}" {
 {% endfor %}
 
 {% for source in resource.UserIdGroupPairs %}
-resource "aws_security_group_rule" "{{ resource.name }}-{{ count() }}" {
+{% set rule_num = count() %}
+resource "aws_security_group_rule" "{{ resource.name }}{% if rule_num > 0 %}-{{ rule_num }}{% endif %}" {
   security_group_id        = "{{ resource.id }}"
   type                     = "{{ resource.type }}"
   from_port                = {{resource.FromPort | default('0')}}
