@@ -1,5 +1,3 @@
-import json
-
 import boto3
 from botocore.exceptions import ClientError
 
@@ -20,8 +18,6 @@ class AwsIamInstanceProfile:
             return None
 
         profile = response['InstanceProfile']
-
-        print(json.dumps(profile, indent=4, default=str))
 
         renderer = Renderer()
         output = renderer.render(profile, 'aws_iam_instance_profile.tf')
