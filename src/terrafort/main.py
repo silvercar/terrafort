@@ -30,7 +30,7 @@ class Terrafort:
     @staticmethod
     @click.command('instance')
     @click.argument('instance_id')
-    def aws_sg(instance_id):
+    def aws_instance(instance_id):
         """
         Create aws_instance
         """
@@ -45,5 +45,6 @@ def cli():
 
 
 cli.add_command(Terrafort.aws_sg)
+cli.add_command(Terrafort.aws_instance)
 if __name__ == "__main__":
     cli()

@@ -22,6 +22,9 @@ class AwsInstance:
 
         instance = response['Reservations'][0]['Instances'][0]
 
+        # Get only the last part of the ARN (just the profile name)
+        instance['iam_instance_profile'] = instance['IamInstanceProfile']['Arn'].rsplit('/', 1)[-1]
+
         renderer = Renderer()
         output = renderer.render(instance, 'aws_instance.tf')
 
