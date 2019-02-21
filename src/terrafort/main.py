@@ -5,6 +5,7 @@ Generate terraform templates for specific resources
 
 import click
 
+from terrafort.resources.aws_instance import AwsInstance
 from terrafort.resources.aws_security_group import AwsSecurityGroup
 
 
@@ -25,6 +26,17 @@ class Terrafort:
 
         sg = AwsSecurityGroup(group_id)
         print(sg.render())
+
+    @staticmethod
+    @click.command('instance')
+    @click.argument('instance_id')
+    def aws_sg(instance_id):
+        """
+        Create aws_instance
+        """
+
+        instance = AwsInstance(instance_id)
+        print(instance.render())
 
 
 @click.group()
