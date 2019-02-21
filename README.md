@@ -24,7 +24,7 @@ Then run terrafort:
 
 ## Resources
 
-### Security groups
+### AWS Security groups
 
 Create a template containing an `aws_security_group` resource, as well as one `aws_security_group_rule` 
 resource for every rule attached to the security group. Each rule will have the same name as the security
@@ -38,6 +38,9 @@ Then, import the group and rules into the terraform state file:
 
 `terraform import aws_security_group.my-group sg-0123abc`
 
+### AWS EC2 Instance
+
+`terrafort instance i-01234567890`
 
 
 ## Development
