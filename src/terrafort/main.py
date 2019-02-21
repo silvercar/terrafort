@@ -5,6 +5,7 @@ Generate terraform templates for specific resources
 
 import click
 
+from terrafort.resources.aws_iam_instance_profile import AwsIamInstanceProfile
 from terrafort.resources.aws_instance import AwsInstance
 from terrafort.resources.aws_security_group import AwsSecurityGroup
 
@@ -38,6 +39,12 @@ class Terrafort:
         instance = AwsInstance(instance_id)
         print(instance.render())
 
+    @staticmethod
+    @click.command('instance_profile')
+    @click.argument('profile_name')
+    def aws_iam_instance_profile(profile_name):
+        template = AwsIamInstanceProfile(profile_name)
+        print(template.render())
 
 @click.group()
 def cli():
@@ -46,5 +53,6 @@ def cli():
 
 cli.add_command(Terrafort.aws_sg)
 cli.add_command(Terrafort.aws_instance)
+cli.add_command(Terrafort.aws_iam_instance_profile)
 if __name__ == "__main__":
     cli()
