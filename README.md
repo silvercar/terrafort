@@ -16,32 +16,26 @@ Terrafort allows you to import individual resources instead of entire resource g
 
 ## Usage
 
-First choose which AWS profile you want to use:
-`export AWS_PROFILE=my-profile`
+First choose which AWS profile and region you want to use:
+```
+export AWS_PROFILE=my-profile
+export AWS_DEFAULT_REGION=us-east-1
+```
 
 Then run terrafort:
 `terrafort <resource> <id>`
 
+For example:
+`terrafort aws_db_instance my_db`
+
 ## Resources
 
-### AWS Security groups
+This is a list of the resources that are currently supported:
 
-Create a template containing an `aws_security_group` resource, as well as one `aws_security_group_rule` 
-resource for every rule attached to the security group. Each rule will have the same name as the security
-group with a number suffix.
-
-Example:
-
-`terrafort sg sg-0123abc >> security_groups.tf`
-
-Then, import the group and rules into the terraform state file:
-
-`terraform import aws_security_group.my-group sg-0123abc`
-
-### AWS EC2 Instance
-
-`terrafort instance i-01234567890`
-
+- aws_iam_instance_profile
+- aws_instance
+- aws_db_instance
+- aws_security_group
 
 ## Development
 
