@@ -5,6 +5,7 @@ resource "aws_db_instance" "{{ resource.DBInstanceIdentifier }}" {
   availability_zone = "{{ resource.AvailabilityZone }}"
   backup_retention_period = "{{ resource.BackupRetentionPeriod }}"
   copy_tags_to_snapshot = "{{ resource.CopyTagsToSnapshot }}"
+  identifier = "{{resource.DBInstanceIdentifier }}"
   instance_class = "{{ resource.DBInstanceClass }}"
   name = "{{ resource.DBName }}"
 
