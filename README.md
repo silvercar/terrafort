@@ -1,9 +1,13 @@
 # Terrafort
 
+[![CircleCI](https://circleci.com/gh/silvercar/terrafort/tree/master.svg?style=svg)](https://circleci.com/gh/silvercar/terrafort/tree/master)
+
 Terraform + Import = Terrafort!
 
-Create terraform templates for existing resources. Unlike other tools like [terraforming](http://terraforming.dtan4.net/),
-Terrafort allows you to import individual resources instead of entire resource groups.
+Terrafort creates terraform templates for existing resources. Unlike other tools like [terraforming](http://terraforming.dtan4.net/),
+Terrafort allows you to create templates for individual resources instead of entire resource groups.
+
+Terrafort will not interact with any terraform state files. That is left up to you.
 
 ## Requirements
 
