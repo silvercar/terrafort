@@ -1,0 +1,11 @@
+{% for range in resource.IpRanges %}
+{% set rule_num = count() %}
+terraform import aws_security_group_rule.{{ resource.name }}{% if rule_num > 0 %}-{{ rule_num }}{% endif %} \
+    {{ resource.id }}_{{ resource.type }}_\
+    {{ resource.IpProtocol }}_\
+    {{ resource.FromPort | default('0')}}_\
+    {{ resource.ToPort | default('0') }}_\
+    {{ range.CidrIp }}
+}
+
+{% endfor %}
