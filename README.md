@@ -7,7 +7,15 @@ Terraform + Import = Terrafort!
 Terrafort creates terraform templates for existing resources. Unlike other tools like [terraforming](http://terraforming.dtan4.net/),
 Terrafort allows you to create templates for individual resources instead of entire resource groups.
 
-Terrafort will not interact with any terraform state files. That is left up to you.
+Terrafort will not interact with any terraform state files, but some resources are capable of
+generating `terraform import` commands for you. Example:
+
+```bash
+$ terrafort --commands aws_security_group sg-12345
+terraform import aws_security_group.my-sg sg-12345
+terraform import aws_security_group_rule.my-sg-1 sg-12345_ingress_tcp_6379_6379_sg-0abcd123
+
+```
 
 ## Requirements
 
@@ -27,7 +35,7 @@ export AWS_DEFAULT_REGION=us-east-1
 ```
 
 Then run terrafort:
-`terrafort <resource> <id>`
+`terrafort [--commands] <resource> <id>`
 
 For example:
 `terrafort aws_db_instance my_db`

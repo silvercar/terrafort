@@ -20,7 +20,7 @@ def read(fname):
 
 setup(
     name='terrafort',
-    version='0.1.4',
+    version='0.2.0',
     install_requires=install_requires,
     package_dir={'': 'src'},
     packages=find_packages('src'),
