@@ -54,4 +54,3 @@ class AwsSecurityGroup:
             output += renderer.render(permission, sg_rule_template)
 
         return output
-
