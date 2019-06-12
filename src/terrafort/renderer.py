@@ -9,6 +9,9 @@ class Renderer:
     """
     counter = 0
 
+    def __init__(self, fmt_enabled=True):
+        self.fmt_enabled = fmt_enabled
+
     def count(self):
         """
         This method is inserted into the Jinja environment
@@ -37,7 +40,11 @@ class Renderer:
         template_env.globals['count'] = self.count
         template = template_env.get_template(template_path)
         rendered = template.render(resource=resource)
-        return self.fmt(rendered)
+
+        if self.fmt_enabled:
+            return self.fmt(rendered)
+
+        return rendered
 
     @staticmethod
     def fmt(content):
