@@ -14,7 +14,7 @@ class AwsSecurityGroup:
         self.ec2 = boto3.client('ec2')
         self.group_id = group_id
 
-    def render(self):
+    def render(self, commands=False):
         """
         Using one template for the security group, and another for rules.
         :return:
@@ -25,11 +25,17 @@ class AwsSecurityGroup:
             print(error)
             return None
 
+        renderer = Renderer()
+        sg_template = 'aws_security_group.tf'
+        sg_rule_template = 'aws_security_group_rule.tf'
+        if commands:
+            sg_template = 'aws_security_group.import.j2'
+            sg_rule_template = 'aws_security_group_rule.import.j2'
+            renderer = Renderer(fmt_enabled=False)
+
         group = response['SecurityGroups'][0]
 
-        renderer = Renderer()
-
-        output = renderer.render(group, 'aws_security_group.tf')
+        output = renderer.render(group, sg_template)
         group_id = "${aws_security_group.%s.id}" % group['GroupName']
 
         renderer.reset_count()  # Need this to add a numeric suffix to each rule name
@@ -37,12 +43,14 @@ class AwsSecurityGroup:
             permission['id'] = group_id
             permission['type'] = "ingress"
             permission['name'] = group['GroupName']
-            output += renderer.render(permission, 'aws_security_group_rule.tf')
+            permission['GroupId'] = group['GroupId']
+            output += renderer.render(permission, sg_rule_template)
 
         for permission in group['IpPermissionsEgress']:
             permission['id'] = group_id
             permission['type'] = "egress"
             permission['name'] = group['GroupName']
-            output += renderer.render(permission, 'aws_security_group_rule.tf')
+            permission['GroupId'] = group['GroupId']
+            output += renderer.render(permission, sg_rule_template)
 
         return output

@@ -1,0 +1,26 @@
+{% for range in resource.IpRanges %}
+{% set rule_num = count() %}
+{%- filter replace('\n', '') %}
+terraform import aws_security_group_rule.{{ resource.name }}{% if rule_num > 0 %}-{{ rule_num }}{% endif %}
+ {{ resource.GroupId }}_
+{{ resource.type }}_
+{{ resource.IpProtocol | lower | replace("-1", "all") }}_
+{{ resource.FromPort | default('0')}}_
+{{ resource.ToPort | default('0') }}_
+{{ range.CidrIp }}
+{% endfilter -%}
+{% endfor -%}
+
+
+{%- for source in resource.UserIdGroupPairs %}
+{% set rule_num = count() %}
+{%- filter replace('\n', '') %}
+terraform import aws_security_group_rule.{{ resource.name }}{% if rule_num > 0 %}-{{ rule_num }}{% endif %}
+ {{ resource.GroupId }}_
+{{ resource.type }}_
+{{ resource.IpProtocol | lower | replace("-1", "all") }}_
+{{ resource.FromPort | default('0')}}_
+{{ resource.ToPort | default('0') }}_
+{{ source.GroupId }}
+{% endfilter -%}
+{% endfor %}
