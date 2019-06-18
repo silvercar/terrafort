@@ -12,6 +12,7 @@ from .providers.aws import Aws
 @click.option('--commands',
               is_flag=True,
               help="Output import commands instead of a terraform template")
+@click.version_option()
 @click.pass_context
 def cli(ctx, commands=False):
     ctx.obj = {'commands':  commands}
