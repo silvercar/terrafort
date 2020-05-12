@@ -57,5 +57,6 @@ class Renderer:
         formatted = subprocess.run(["terraform", "fmt", "-"],
                                    stdout=subprocess.PIPE,
                                    input=content,
-                                   encoding='ascii')
+                                   encoding='ascii',
+                                   check=False)
         return formatted.stdout
