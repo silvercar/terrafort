@@ -36,7 +36,7 @@ class AwsSecurityGroup:
         group = response['SecurityGroups'][0]
 
         output = renderer.render(group, sg_template)
-        group_id = "${aws_security_group.%s.id}" % group['GroupName']
+        group_id = "aws_security_group.%s.id" % group['GroupName']
 
         renderer.reset_count()  # Need this to add a numeric suffix to each rule name
         for permission in group['IpPermissions']:
